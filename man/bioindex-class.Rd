@@ -19,8 +19,19 @@ Class  \code{bioindex}
 
 \item{\code{omega}}{A matrix with the range size of every species}
 
+\item{\code{wBeta}}{A numeric value with Whittaker’s multiplicative beta index}
+
+\item{\code{laBeta}}{A numeric value with Lande’s additive beta index}
+
+\item{\code{leBeta}}{A numeric value with Legendre’s beta index}
+
+\item{\code{nestedness}}{A numeric value with Wright and Reeves' nestedness}
+
 \item{\code{dispersion_field}}{A matrix with the set of ranges of all species that
 occur in at each locality}
+
+\item{\code{richness_field}}{A matrix with the number of  shared species in
+each site}
 }}
 
 \author{

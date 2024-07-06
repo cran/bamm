@@ -177,8 +177,14 @@ csd <- methods::setClass(Class = "csd",
 #' @author Luis Osorio-Olvera & Jorge Soberón
 #' @slot alpha A sparse matrix with the richness of species per site
 #' @slot omega A sparse matrix with the range size of every species
+#' @slot wBeta A numeric value with Whittaker’s multiplicative beta index
+#' @slot laBeta A numeric value with Lande’s additive beta index
+#' @slot leBeta A numeric value with Legendre’s beta index
+#' @slot nestedness A numeric value with Wright and Reeves' nestedness
 #' @slot dispersion_field A sparse matrix with the set of ranges of all species
 #' that occur in at each locality
+#' @slot richness_field A sparse matrix with the number of  shared species in
+#' each site
 #' @exportClass bioindex_sparse
 #' @return An object of class bioindex_sparse
 #' @export
@@ -187,7 +193,12 @@ bioindex_sparse <- methods::setClass(Class = "bioindex_sparse",
                               representation (
                                 alpha = "dgeMatrix",
                                 omega = "dgeMatrix",
-                                dispersion_field = "dgeMatrix"
+                                wBeta = "numeric",
+                                laBeta = "numeric",
+                                leBeta = "numeric",
+                                nestedness = "numeric",
+                                dispersion_field = "dgeMatrix",
+                                richness_field = "dgeMatrix"
                               ))
 
 
@@ -196,8 +207,14 @@ bioindex_sparse <- methods::setClass(Class = "bioindex_sparse",
 #' @author Luis Osorio-Olvera & Jorge Soberón
 #' @slot alpha A matrix with the richness of species per site
 #' @slot omega A matrix with the range size of every species
+#' @slot wBeta A numeric value with Whittaker’s multiplicative beta index
+#' @slot laBeta A numeric value with Lande’s additive beta index
+#' @slot leBeta A numeric value with Legendre’s beta index
+#' @slot nestedness A numeric value with Wright and Reeves' nestedness
 #' @slot dispersion_field A matrix with the set of ranges of all species that
 #' occur in at each locality
+#' @slot richness_field A matrix with the number of  shared species in
+#' each site
 #' @exportClass bioindex
 #' @return An object of class bioindex
 #' @export
@@ -206,7 +223,12 @@ bioindex <- methods::setClass(Class = "bioindex",
                                      representation (
                                        alpha = "matrix",
                                        omega = "matrix",
-                                       dispersion_field = "matrix"
+                                       wBeta = "numeric",
+                                       laBeta = "numeric",
+                                       leBeta = "numeric",
+                                       nestedness = "numeric",
+                                       dispersion_field = "matrix",
+                                       richness_field = "matrix"
                                      ))
 
 

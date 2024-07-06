@@ -1,7 +1,8 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/luismurao/bamm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/luismurao/bamm/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/luismurao/bamm/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/luismurao/bamm/actions/workflows/test-coverage.yaml)
-
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/bamm)](https://github.com/r-hub/cranlogs.app)
+[![CRAN status](https://www.r-pkg.org/badges/version/bamm)](https://CRAN.R-project.org/package=bamm)
 <!-- badges: end -->
 
 # bamm <a href="https://luismurao.github.io/bamm/"><img src="man/figures/logo.png" align="right" height="139" /></a>
@@ -51,6 +52,12 @@ The main functions of the package are:
 
 # Installation
 
+### CRAN
+
+```r
+install.packages("bamm")
+```
+### GitHub
 
 ```r
 if (!require('devtools')) install.packages('devtools')
@@ -63,6 +70,7 @@ devtools::install_github('luismurao/bamm',build_vignettes=TRUE)
 
 We are grateful to our many colleagues in the University of Kansas Niche Modeling
 Group for many vivacious and useful discussions on the topics of the paper. 
-LOO acknowledges partially supported by Consejo Nacional de Ciencia y Tecnología 
-(CONACyT; postdoctoral fellowship number 740751; CVU: 368747).
+LOO acknowledges partially supported by Programa de Apoyo a Proyectos de 
+Investigación e Innovación Tecnológica PAPIIT-IA202824 and Consejo Nacional de 
+Ciencia y Tecnología (CONACyT; postdoctoral fellowship number 740751; CVU: 368747).
 LOO and JS acknowledges Blitzi Soberon for moral support.
