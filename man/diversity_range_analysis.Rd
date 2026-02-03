@@ -12,7 +12,7 @@ diversity_range_analysis(
   raster_templete = NULL,
   niter = 100,
   return_null_dfield = FALSE,
-  randal = "indep_swap",
+  randal = "fastball",
   parallel = TRUE,
   n_cores = 2
 )
@@ -90,7 +90,7 @@ rdivan <- bamm::diversity_range_analysis(pam=pam,
                                          xy_mat=xy_mat,
                                          raster_templete = en_models[[1]],
                                          parallel=TRUE,
-                                         n_cores=2,
+                                         n_cores=1,
                                          return_null_dfield=TRUE)
 bamm::plot(rdivan,plot_type="diversity_range")
 bamm::plot(rdivan,plot_type="diversity_range_map")
