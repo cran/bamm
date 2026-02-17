@@ -1,4 +1,4 @@
- # bamm 0.6.1
+ # bamm 0.6.2
    
    * Fixed memory safety issue in sdm_sim that caused segfaults with sanitizers
    * Added input validation to prevent null pointer errors
