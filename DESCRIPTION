@@ -2,7 +2,7 @@ Type: Package
 Package: bamm
 Title: Species Distribution Models as a Function of Biotic, Abiotic and
         Movement Factors (BAM)
-Version: 0.6.0
+Version: 0.6.1
 Authors@R: c(
     person("Luis", "Osorio-Olvera", 
            email = "luismurao@gmail.com", 
@@ -38,14 +38,14 @@ Description: Species Distribution Modeling (SDM) is a practical
 License: GPL (>= 3)
 URL: https://luismurao.github.io/bamm/
 BugReports: https://github.com/luismurao/bamm/issues
-Depends: R (>= 4.1.0)
-Imports: animation (>= 2.3), crosstalk, dplyr (>= 0.8.0), furrr (>=
-        0.1.0), future (>= 1.18.0), graphics, grDevices, igraph (>=
-        1.2), leaflet (>= 2.0), magrittr (>= 1.2), Matrix (>= 1.2.14),
-        methods (>= 3.3), plotly, purrr (>= 0.2), raster (>= 3.4-13),
-        Rcpp (>= 0.12.18), Rdpack (>= 0.11.0), RSpectra (>= 0.13.1), sp
-        (>= 1.3.0), exactextractr, stats, utils
-Suggests: knitr, rmarkdown, spelling, testthat (>= 3.0.0)
+Depends: R (>= 3.5.0)
+Imports: animation (>= 2.3), dplyr (>= 0.8.0), furrr (>= 0.1.0), future
+        (>= 1.18.0), graphics, grDevices, igraph (>= 1.2), leaflet (>=
+        2.0), magrittr (>= 1.2), Matrix (>= 1.2.14), methods (>= 3.3),
+        purrr (>= 0.2), raster (>= 3.4-13), Rcpp (>= 0.12.18), Rdpack
+        (>= 0.11.0), RSpectra (>= 0.13.1), sp (>= 1.3.0), stats, utils
+Suggests: knitr, rmarkdown, testthat (>= 3.0.0), crosstalk, plotly,
+        spelling
 LinkingTo: Rcpp, RcppArmadillo
 VignetteBuilder: knitr
 RdMacros: Rdpack
@@ -63,12 +63,12 @@ SystemRequirements: GDAL (>= 2.2.3): gdal-bin (deb), libgdal-dev (deb)
         saveGIF(); (PDF)LaTeX for saveLatex(); SWF Tools
         (http://swftools.org) for saveSWF(); FFmpeg (http://ffmpeg.org)
         or avconv (https://libav.org/avconv.html) for saveVideo()
-Language: en-US
-Packaged: 2026-02-03 18:07:38 UTC; luis.osorio
+Packaged: 2026-02-17 00:21:30 UTC; luis.osorio
 Author: Luis Osorio-Olvera [aut, cre] (ORCID:
     <https://orcid.org/0000-0003-0701-5398>),
   Jorge Soberón [aut] (ORCID: <https://orcid.org/0000-0003-2160-4148>),
   Rusby G. Contreras-Díaz [ctb] (ORCID:
     <https://orcid.org/0000-0002-0569-8984>)
 Repository: CRAN
-Date/Publication: 2026-02-03 18:30:02 UTC
+Date/Publication: 2026-02-17 06:30:02 UTC
+Language: en-US

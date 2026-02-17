@@ -9,7 +9,7 @@ sim2Animation(
   which_steps,
   fmt = "GIF",
   filename,
-  png_keyword = NULL,
+  png_keyword = "sdm_sim",
   extra_legend = NULL,
   bg_color = "#F6F2E5",
   suit_color = "#0076BE",

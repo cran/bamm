@@ -7,14 +7,12 @@
 sdm_sim(
   set_A,
   set_M,
-  sp_interaction_model = NULL,
   initial_points,
   nsteps,
   stochastic_dispersal = TRUE,
   disp_prop2_suitability = TRUE,
   disper_prop = 0.5,
-  progress_bar = TRUE,
-  rcpp = TRUE
+  progress_bar = TRUE
 )
 }
 \arguments{
@@ -24,9 +22,6 @@ sdm_sim(
 \item{set_M}{A setM object containing the adjacency matrix of the
 study area.
 See \code{\link[bamm]{adj_mat}}}
-
-\item{sp_interaction_model}{A RasterLayer representing a suitability model
-of a species positive interaction. See details}
 
 \item{initial_points}{A sparse vector returned by the function
 \code{\link[bamm]{occs2sparse}}}
@@ -43,8 +38,6 @@ value must be declared in the parameter `disper_prop`.}
 \item{disper_prop}{Probability of dispersal to reachable cells.}
 
 \item{progress_bar}{Show progress bar}
-
-\item{rcpp}{Logical. Use native C++ code to run the model.}
 }
 \value{
 An object of class \code{\link[bamm]{bam}} with simulation results.
@@ -66,12 +59,6 @@ in \eqn{t+1} start with those occupied at time \eqn{t} denoted by
 \eqn{\mathbf{G}_j(t)}, allow the individuals to disperse among
 adjacent patches, as defined by \eqn{\mathbf{M}_j}, then remove individuals
 from patches that are unsuitable, as defined by \eqn{\mathbf{A}_j(t)}.
-
-The stochastic model uses a suitability values to model dispersal probabilities.
-These suitability values can be either obtained from the continues model stored in
-the set_A object or from the sp_interaction_model (RasterLayer).
-If the parameter rcpp is set to TRUE the model will be run using native C++
-code through Rcpp and RcppArmadillo packages.
 }
 \examples{
 \donttest{
@@ -91,9 +78,9 @@ occs_sparse <- bamm::occs2sparse(modelsparse = sparse_mod,
 sdm_lep_cal <- bamm::sdm_sim(set_A = sparse_mod,
                              set_M = adj_mod,
                              initial_points = occs_sparse,
-                             nsteps = 100,
+                             nsteps = 10,
                              stochastic_dispersal = TRUE,
-                             disp_prop2_suitability=FALSE,
+                             disp_prop2_suitability=TRUE,
                              disper_prop=0.5,
                              progress_bar=TRUE)
 

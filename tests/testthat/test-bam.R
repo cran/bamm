@@ -382,7 +382,7 @@ test_that("sim2Raster returns a stack of the distribution at time t",{
   model <- raster::raster(model_path)
   sparse_mod <- bamm::model2sparse(model,0.2)
   adj_mod <- bamm::adj_mat(sparse_mod,ngbs = 1,eigen_sys = TRUE,1)
-  #print(adj_mod)
+  print(adj_mod)
   occs_lep_cal <- data.frame(longitude = c(-115.10417,
                                            -104.90417),
                              latitude = c(29.61846,
@@ -393,10 +393,6 @@ test_that("sim2Raster returns a stack of the distribution at time t",{
                                set_M = adj_mod,
                                initial_points = occs_sparse,
                                nsteps = 10)
-  sdm_lep_cal <- bamm::sdm_sim(set_A = sparse_mod,
-                               set_M = adj_mod,
-                               initial_points = occs_sparse,
-                               nsteps = 10,rcpp = FALSE)
   expect_error(bamm::sim2Raster(sdm_simul = "sdm_lep_cal",
                                 which_steps = seq(1,10,by=1)))
   expect_error(bamm::sim2Raster(sdm_simul = sdm_lep_cal,
@@ -464,18 +460,18 @@ test_that("community_sim simulates community dynamics and returns an
 
   expect_error(bamm::models2pam(mods_stack = "en_models",
                                 sparse=FALSE,parallel=FALSE,
-                                ncores=1))
+                                ncores=2))
   pam <- bamm::models2pam(mods_stack = en_models,sparse=TRUE,
-                          parallel=FALSE,ncores=1)
+                          parallel=TRUE,ncores=2)
   expect_s4_class(pam,"dgCMatrix")
   pam <- bamm::models2pam(mods_stack = en_models,sparse=TRUE,
-                          parallel=FALSE,ncores=1)
+                          parallel=FALSE,ncores=2)
   expect_s4_class(pam,"dgCMatrix")
   pam <- bamm::models2pam(mods_stack = en_models,
-                          sparse=FALSE,parallel=TRUE,ncores=1)
+                          sparse=FALSE,parallel=TRUE,ncores=2)
   expect_match(class(pam)[1],"matrix")
   pam <- bamm::models2pam(mods_stack = en_models,sparse=FALSE,
-                          parallel=FALSE,ncores=1)
+                          parallel=FALSE,ncores=2)
   expect_match(class(pam)[1],"matrix")
 
   # Test for diversity_range_analysis
@@ -486,22 +482,16 @@ test_that("community_sim simulates community dynamics and returns an
   rdivan <- bamm::diversity_range_analysis(pam=pam,parallel = TRUE,
                                            xy_mat=xy_mat,
                                            raster_templete = en_models[[1]],
-                                           n_cores = 1,
                                            return_null_dfield=TRUE)
   expect_error(bamm::plot(rdivan,plot_type="diversity_range1"))
   bamm::plot(rdivan,plot_type="diversity_range_map")
-  if(interactive()){
-    # bamm::plot(rdivan,plot_type="diversity_range_interactive")
-
-  }
-
   #bamm::plot(rdivan,plot_type="diversity_range_interactive")
   bamm::plot(rdivan,plot_type="alpha")
   bamm::plot(rdivan,plot_type="dispersion_field")
   bamm::plot(rdivan,plot_type="dispersion_field_map")
   expect_s4_class(rdivan,"diversity_range")
   rdivan <- bamm::diversity_range_analysis(pam=pam,parallel = TRUE,
-                                           xy_mat=xy_mat,n_cores =1,
+                                           xy_mat=xy_mat,
                                            raster_templete = NULL,
                                            return_null_dfield=TRUE)
   bamm::plot(rdivan,plot_type="diversity_range_map")
@@ -550,13 +540,13 @@ test_that("null_distribution_field_distribution expects a matrix",{
   pam <- data.frame(matrix(rbinom(100,1,0.3),nrow = 10,ncol = 10))
   dfield_rand <- bamm::null_dispersion_field_distribution(pam,n_iter=10,
                                                           parallel=FALSE,
-                                                          n_cores = 1)
+                                                          n_cores = 2)
   dfield_rand <- bamm::null_dispersion_field_distribution(pam,n_iter=10,
                                                           parallel=TRUE,
-                                                          n_cores = 1)
+                                                          n_cores = 2)
   expect_error(bamm::null_dispersion_field_distribution("pam",n_iter=10,
                                                         parallel=FALSE,
-                                                        n_cores = 1))
+                                                        n_cores = 2))
   expect_vector(dfield_rand)
 })
 
@@ -688,7 +678,7 @@ test_that("predict retuns a prediction",{
   smd_lep_cal <- bamm::sdm_sim(set_A = sparse_mod,
                                set_M = adj_mod,
                                initial_points = occs_sparse,
-                               nsteps = 10,rcpp = TRUE)
+                               nsteps = 10)
   #----------------------------------------------------------------------------
   # Predict species' distribution under suitability change
   # scenarios (could be climate chage scenarios).
@@ -785,7 +775,7 @@ testthat::test_that("sim2Animation",{
                                         fmt = "HTML",ani.width = 1200,
                                         ani.height = 1200,
                                         filename = ani_name)
-  expect_null(sdm_lep_cal_st)
+  expect_s4_class(sdm_lep_cal_st,"RasterLayer")
   ani_name <- tempfile(pattern = "anima_",fileext = ".gif")
   sdm_lep_cal_st <- bamm::sim2Animation(sdm_simul = sdm_lep_cal,
                                         which_steps = seq(1,20,by=1),
@@ -793,28 +783,6 @@ testthat::test_that("sim2Animation",{
                                         ani.height = 1200,
                                         filename = ani_name)
 
-  expect_null(sdm_lep_cal_st)
-
-})
-
-
-# Test polygons 2 pam
-
-testthat::test_that("pol2pam",{
-  # Example with sample data
-  uicn <- readRDS(system.file("extdata/uicn.rds",package = "bamm"))
-  sudam <- readRDS(system.file("extdata/suam.rds",package = "bamm"))
-  # Convert to PAM with 0.5 degree resolution
-  pam_result <- bamm::pol2pam(poly = uicn,
-                              taxon_attribute = "binomial",
-                              resolution = 0.5,
-                              polymask = NULL)
-
-  # With masking polygon
-  pam_masked <- pol2pam(poly = uicn,
-                        taxon_attribute = "binomial",
-                        resolution = 0.5,
-                        polymask = sudam)
-  testthat::expect_equal(class(pam_masked),"data.frame")
+  expect_s4_class(sdm_lep_cal_st,"RasterLayer")
 
 })

@@ -28,14 +28,10 @@ Programa
 Proyectos
 RasterLayer
 RasterStack
-Rasterizing
-Rcpp
-RcppArmadillo
 SDM
 Soberon
 SpatialPolygon
 SpatialPolygonDataFrame
-SpatialPolygonsDataFrame
 Strona
 Tecnología
 Tecnológica
@@ -46,7 +42,6 @@ al
 automata
 bam
 binarize
-biogeography
 bioindex
 biotic
 bnarize
@@ -65,7 +60,6 @@ eig
 eigen
 endemism
 et
-exactextractr
 indep
 iter
 jaccard
@@ -82,12 +76,8 @@ pams
 pkgdown
 plotly
 png
-polymask
-purrr
 px
-rasterization
 rasters
-rcpp
 rstudio
 sdm
 setA
@@ -97,8 +87,6 @@ shpolygon
 sp
 sps
 ssim
-sys
-taxon's
 tbl
 textbf
 ubuntu

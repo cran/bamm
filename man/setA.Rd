@@ -5,38 +5,33 @@
 \alias{setA-class}
 \alias{setA}
 \alias{A-class}
-\title{Class for the A (Abiotic) Set of BAM Diagram}
+\title{Class for the A set of the BAM diagram}
 \value{
 An object of class setA
 showClass("setA")
 }
 \description{
-Represents the abiotic component (environmental suitability) in the BAM framework.
-Contains raster-based niche models and their sparse matrix representations.
+A class for the A set of the BAM diagram. It contains raster models and
+IDs of pixels with values different than NA.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{niche_model}}{A \code{RasterLayer} or \code{RasterStack} representing the
-environmental suitability model (binary or continuous)}
+\item{\code{niche_model}}{A niche model in raster format. It can be a binary model
+or continuous.
+If the model is in a continuous format.}
 
-\item{\code{suit_threshold}}{Numeric value used to binarize continuous models}
+\item{\code{suit_threshold}}{Suitability value used to binarize continuous model}
 
-\item{\code{cellIDs}}{Numeric vector of raster cell IDs with non-NA values}
+\item{\code{cellIDs}}{A numeric vector with the IDs of the cells with prediction
+values}
 
-\item{\code{suit_values}}{Numeric vector of suitability values for continuous models}
+\item{\code{suit_values}}{A numeric vector with suitability value of the continuous
+map}
 
-\item{\code{sparse_model}}{A sparse matrix (\code{dgCMatrix}) representation of the niche model}
+\item{\code{sparse_model}}{A niche model in sparse matrix format}
 }}
 
-\section{Validity}{
-
-The \code{niche_model} slot must be either a \code{RasterLayer} or \code{RasterStack}.
-}
-
-\seealso{
-\code{\link{model2sparse}}, \code{\link{setM-class}}
-}
 \author{
 Luis Osorio-Olvera & Jorge Soberón
 }

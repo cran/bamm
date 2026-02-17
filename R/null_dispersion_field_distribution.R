@@ -52,7 +52,7 @@ null_dispersion_field_distribution <- function(pam,n_iter=10,randal="fastball",
   if(!methods::is(pam,"matrix") & !is.numeric(pam[1,1])){
     stop("pam object should be a binary matrix")
   }
-  sniter <- seq_len(n_iter)
+  sniter <- 1:n_iter
   if(parallel){
     oplan <- plan(tweak(multisession, workers = n_cores))
   } else{
@@ -60,7 +60,7 @@ null_dispersion_field_distribution <- function(pam,n_iter=10,randal="fastball",
   }
   on.exit(plan(oplan), add = TRUE)
   nms <-paste0("dfrand_",sniter)
-  distfield_rand <- sniter |> furrr::future_map_dfc(function(x){
+  distfield_rand <- sniter %>% furrr::future_map_dfc(function(x){
     ppam <- bamm::permute_pam(m=pam,as_sparse=TRUE,randal = randal)
     distfield <-bamm::pam2bioindex(pam=ppam,
                                    biodiv_index = "dispersion_field",
@@ -69,7 +69,7 @@ null_dispersion_field_distribution <- function(pam,n_iter=10,randal="fastball",
     y <- data.frame(dfield =distfield@dispersion_field)
     return(y)
   },.progress = TRUE,.options = furrr::furrr_options(seed = NULL))
-
+  plan(sequential)
 
   distfield_rand <- data.matrix(distfield_rand)
   colnames(distfield_rand) <- nms
